@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 
 # This depends on lanzaboote.
 {
@@ -11,4 +11,5 @@
       pkiBundle = "/nix/persist/etc/secureboot";
     };
   };
+  environment.systemPackages = [ pkgs.sbctl ];
 }
