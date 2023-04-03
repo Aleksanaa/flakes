@@ -26,10 +26,17 @@
     };
   };
 
-  outputs = inputs @ { flake-parts, ... }: flake-parts.lib.mkFlake { inherit inputs; } {
-    systems = [ "x86_64-linux" "aarch64-linux" ];
-    perSystem = { config, ... }: {
-
-    };
-  };
+  outputs = inputs @ { flake-parts, ... }: flake-parts.lib.mkFlake { inherit inputs; } (
+    # Copied from https://github.com/linyinfeng/dotfiles/blob/main/flake.nix
+    { self, lib, ... }:
+    let
+      selfLib = import ./lib { inherit inputs lib; };
+    in {
+      systems = [ "x86_64-linux" "aarch64-linux" ];
+      flake.lib = selfLib;
+      imports = [
+        inputs.flake-parts.flakeModules.easyOverlay
+      ] ++ selfLib.flake.importDir ./flake;
+    }
+  );
 }
