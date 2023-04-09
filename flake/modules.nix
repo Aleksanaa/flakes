@@ -9,15 +9,15 @@ in
   flake = {
     nixosModules = rakeLeaves ../mod;
     nixosSuites = buildSuites nixosModules (modules: suites: {
-      osBase = with nixos; [ doas doc nix time ];
-      osInter = with nixos.compat; [ fcitx5 keyring pipewire nixos.hm greetd gtklock ];
-      osBoot = with nixos.boot; [ lanza persist plymth ];
-      osDesk = osBase ++ osInter ++ osBoot;
+      osBase = with modules.nixos; [ doas doc nix time ];
+      osInter = with modules.nixos.compat; [ fcitx5 keyring pipewire nixos.hm greetd gtklock ];
+      osBoot = with modules.nixos.boot; [ lanza persist plymth ];
+      osDesk = suites.osBase ++ suites.osInter ++ suites.osBoot;
 
-      homeBase = extract home.base;
-      homeDesk = extract home.desk;
-      homeShell = extract home.sh;
-      homeAll = homeBase ++ homeDesk ++ homeShell;
-    })
+      homeBase = extract modules.home.base;
+      homeDesk = extract modules.home.desk;
+      homeShell = extract modules.home.sh;
+      homeAll = suites.homeBase ++ suites.homeDesk ++ suites.homeShell;
+    });
   };
 }
