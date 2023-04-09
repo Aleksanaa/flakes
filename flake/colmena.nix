@@ -1,9 +1,9 @@
-{ config, self, inputs, ... }:
+{ config, inputs, ... }:
 
 # add colmena compatibility
 # from https://github.com/zhaofengli/colmena/issues/60#issuecomment-1047199551
 {
-  colmena = {
+  flake.colmena = {
     meta = {
       description = "my personal machines";
       # This can be overriden by node nixpkgs
@@ -12,5 +12,5 @@
   } // builtins.mapAttrs (name: value: {
     nixpkgs.system = value.config.nixpkgs.system;
     imports = value._module.args.modules;
-  }) (self.nixosConfigurations);
+  }) (config.flake.nixosConfigurations);
 }

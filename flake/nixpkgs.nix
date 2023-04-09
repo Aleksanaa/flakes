@@ -9,10 +9,10 @@ in
     packages = customPackages { inherit pkgs; dir = ../pkgs; };
     overlayAttrs = customOverlays { inherit pkgs; dir = ../lay; };
   };
-  nixpkgs = {
-    config.allowUnfree = true;
-    overlays = [
-      inputs.hyprland.overlays.default
-    ];
-  };
+  #nixpkgs = {
+  #  config.allowUnfree = true;
+  #  overlays = [
+  #    inputs.hyprland.overlays.default
+  #  ];
+  #};
 }

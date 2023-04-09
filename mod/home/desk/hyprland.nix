@@ -1,4 +1,4 @@
-{ pkgs, lib, selfLib, ... }:
+{ inputs, pkgs, lib, selfLib, ... }:
 
 let
   inherit (selfLib.home.mkHyprConf) mkHyprlandVariables mkHyprlandBinds mkNumBinds;
@@ -81,9 +81,10 @@ let
   };
 in
 {
+  imports = [ inputs.hyprland.homeManagerModules.default ];
   wayland.windowManager.hyprland = {
     enable = true;
     systemdIntegration = true;
-    extraConfig =
+    extraConfig = hyprlandVariables + "\n" + hyprlandBinds + "\n" + hyprlandWorkspaces;
   };
 }

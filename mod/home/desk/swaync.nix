@@ -83,7 +83,7 @@
   '';
   home.packages = [ pkgs.swaynotificationcenter ];
   systemd.user.services.swaync = selfLib.home.mkAutoStart {
-    Description = "Sway notification center service";
+    Desc = "Sway notification center service";
     Service = {
       ExecStart = "${pkgs.swaynotificationcenter}/bin/swaync";
       Restart = "always";

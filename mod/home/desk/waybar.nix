@@ -7,7 +7,7 @@
       ExecStart = "${pkgs.waybar}/bin/waybar";
       Restart = "on-failure";
     };
-  }
+  };
   programs.waybar = {
     enable = true;
     package = pkgs.waybar;

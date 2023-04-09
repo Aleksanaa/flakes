@@ -1,4 +1,4 @@
-{ config, inputs, lib }:
+{ config, inputs, lib, ... }:
 
 let
   inherit (config.flake.lib.flake.importers) flattenTree rakeLeaves;
@@ -6,11 +6,18 @@ let
   extract = set: lib.attrValues (flattenTree set);
 in
 {
-  flake = {
+  flake = rec {
     nixosModules = rakeLeaves ../mod;
     nixosSuites = buildSuites nixosModules (modules: suites: {
-      osBase = with modules.nixos; [ doas doc nix time ];
-      osInter = with modules.nixos.compat; [ fcitx5 keyring pipewire nixos.hm greetd gtklock ];
+      osBase = with modules.nixos; [ doas doc nix time user ];
+      osInter = with modules.nixos; [
+        pipewire
+        hm
+        compat.fcitx5
+        compat.keyring
+        compat.greetd
+        compat.gtklock
+      ];
       osBoot = with modules.nixos.boot; [ lanza persist plymth ];
       osDesk = suites.osBase ++ suites.osInter ++ suites.osBoot;
 

@@ -7,7 +7,7 @@ let
 in
 {
   systemd.user.services.cliphist = selfLib.home.mkAutoStart {
-    Description = "Cliphist clipboard store";
+    Desc = "Cliphist clipboard store";
     Service = {
       ExecStart = "${clipScript}";
       Restart = "always";

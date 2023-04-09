@@ -2,7 +2,7 @@
 
 let
   rofi = config.programs.rofi.finalPackage;
-  pinentryRofi = pkgs.stdenvNoCC.mkDerivation {
+  pinentryRofi = with pkgs; stdenvNoCC.mkDerivation {
     name = "anypinentry-rofi";
     src = fetchFromGitHub {
       owner = "phenax";
