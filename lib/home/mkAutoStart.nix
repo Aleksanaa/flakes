@@ -10,6 +10,8 @@
       After = [ "graphical-session.target" ] ++ After;
     };
     Install.WantedBy = [ "graphical-session.target" ];
-    Service = Service;
+    Service = {
+      WorkingDirectory = "~";
+    } // Service;
   };
 }

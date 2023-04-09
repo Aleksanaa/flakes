@@ -1,0 +1,38 @@
+diff --git a/src/lib/fcitx/inputmethodmanager.cpp b/src/lib/fcitx/inputmethodmanager.cpp
+index ce53b286..b6a2c3ec 100644
+--- a/src/lib/fcitx/inputmethodmanager.cpp
++++ b/src/lib/fcitx/inputmethodmanager.cpp
+@@ -418,8 +418,6 @@ void InputMethodManager::save() {
+         groupConfig.items.setValue(std::move(itemsConfig));
+     }
+     config.groups.setValue(std::move(groups));
+-
+-    safeSaveAsIni(config, "profile");
+ }
+ 
+ const InputMethodEntry *
+diff --git a/src/lib/fcitx/instance.cpp b/src/lib/fcitx/instance.cpp
+index fe905bef..d5483d24 100644
+--- a/src/lib/fcitx/instance.cpp
++++ b/src/lib/fcitx/instance.cpp
+@@ -1708,8 +1708,6 @@ void Instance::save() {
+     FCITX_D();
+     // Refresh timestamp for next auto save.
+     d->idleStartTimestamp_ = now(CLOCK_MONOTONIC);
+-    d->imManager_.save();
+-    d->addonManager_.saveAll();
+ }
+ 
+ void Instance::activate() {
+diff --git a/src/modules/dbus/dbusmodule.cpp b/src/modules/dbus/dbusmodule.cpp
+index a7196676..db9bbfd5 100644
+--- a/src/modules/dbus/dbusmodule.cpp
++++ b/src/modules/dbus/dbusmodule.cpp
+@@ -215,7 +215,6 @@ public:
+         }
+         group.setDefaultInputMethod("");
+         imManager.setGroup(std::move(group));
+-        imManager.save();
+     }
+ 
+     std::vector<DBusStruct<std::string, std::string, std::vector<std::string>,

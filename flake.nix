@@ -34,9 +34,7 @@
     in {
       systems = [ "x86_64-linux" "aarch64-linux" ];
       flake.lib = selfLib;
-      imports = [
-        inputs.flake-parts.flakeModules.easyOverlay
-      ] ++ selfLib.flake.importDir ./flake;
+      imports = selfLib.flake.importDir ./flake;
     }
   );
 }

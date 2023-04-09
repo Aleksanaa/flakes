@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, ... }:
 
 # Copied from https://github.com/hyprwm/Hyprland/pull/870#issuecomment-1319448768
 # Generates hyprland config
@@ -48,6 +48,18 @@ rec {
         )
         else concatAttrs value (
           name2: value2: name + " = " + name2 + "," + (assert builtins.isString value2; value2)
+        )
+      )
+    )
+  );
+
+  mkNumBinds = string1: string2: (
+    builtins.attrValues(
+      builtins.mapAttrs (x1: y1: "${string1}${x1}${string2}${y1}") (
+        builtins.listToAttrs (
+          builtins.map (x: {name = builtins.toString (lib.mod x 10); value = builtins.toString x;}) (
+            lib.range 1 10
+          )
         )
       )
     )

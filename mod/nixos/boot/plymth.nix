@@ -7,6 +7,7 @@
       "quiet"
       "splash"
     ];
+    initrd.systemd.enable = true;
     plymouth.enable = true;
   };
 }

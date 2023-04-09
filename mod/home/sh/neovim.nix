@@ -16,6 +16,7 @@
       nui-nvim
       searchbox-nvim
     ];
+    # use wl-clipboard to access system clipboard
     extraPackages = with pkgs; [ wl-clipboard ];
     extraConfig = ''
       set guicursor=a:ver25-iCursor-blinkwait100-blinkon300-blinkoff100
