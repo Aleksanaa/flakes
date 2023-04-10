@@ -7,8 +7,8 @@ let
 in
 {
   flake = rec {
-    nixosModules = rakeLeaves ../mod;
-    nixosSuites = buildSuites nixosModules (modules: suites: {
+    nixosProfiles = rakeLeaves ../mod;
+    nixosSuites = buildSuites nixosProfiles (modules: suites: {
       osBase = with modules.nixos; [ doas doc nix time user ];
       osInter = with modules.nixos; [
         pipewire

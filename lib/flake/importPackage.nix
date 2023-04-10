@@ -5,7 +5,7 @@ let
 in
 {
   customPackages = { pkgs, dir }: (
-    builtins.mapAttrs (name: path: pkgs.callPackage path) (flattenTree (rakeLeaves dir))
+    builtins.mapAttrs (name: path: pkgs.callPackage path {}) (flattenTree (rakeLeaves dir))
   );
 
   customOverlays = { pkgs, dir }: (

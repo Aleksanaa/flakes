@@ -1,4 +1,4 @@
-{ inputs, userName, selfLib, selfPkgs, nixosModules, nixosSuites, ... }:
+{ inputs, userName, selfLib, selfPkgs, profiles, suites, ... }:
 
 {
   imports = [ inputs.home-manager.nixosModules.home-manager ];
@@ -6,7 +6,7 @@
     useGlobalPkgs = true;
     useUserPackages = true;
     extraSpecialArgs = {
-      inherit inputs userName selfLib selfPkgs nixosModules nixosSuites;
+      inherit inputs userName selfLib selfPkgs profiles suites;
     };
   };
 }

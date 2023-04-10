@@ -2,13 +2,8 @@
 
 let
   userName = "aleksana";
-  nixosSpecialArgs = {
-    inherit inputs userName;
-    inherit (config.flake) nixosModules nixosSuites;
-    selfLib = config.flake.lib;
-    selfPkgs = config.flake.packages;
-  };
-  commonNixosModules = config.flake.nixosSuites.osBase;
+  inherit (config.flake) nixosProfiles nixosSuites;
+  commonNixosModules = nixosSuites.osBase;
   mkHost = {
     name,
     configurationName ? name,
@@ -18,7 +13,13 @@ let
     ${name} = inputs.nixpkgs.lib.nixosSystem {
       inherit system;
       inherit ((getSystem system).allModuleArgs) pkgs;
-      specialArgs = nixosSpecialArgs;
+      specialArgs = {
+        inherit inputs userName;
+        profiles = nixosProfiles;
+        suites = nixosSuites;
+        selfLib = config.flake.lib;
+        selfPkgs = (getSystem system).packages;
+      };
       modules = (
         commonNixosModules
         ++ extraModules
