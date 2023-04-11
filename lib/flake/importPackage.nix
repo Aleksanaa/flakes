@@ -9,6 +9,6 @@ in
   );
 
   customOverlays = { pkgs, dir }: (
-    builtins.mapAttrs (name: path: import path {prev = pkgs;}) (flattenTree (rakeLeaves dir))
+    builtins.mapAttrs (name: path: (import path pkgs).${name}) (flattenTree (rakeLeaves dir))
   );
 }

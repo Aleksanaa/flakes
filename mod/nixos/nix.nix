@@ -1,6 +1,8 @@
-{ inputs, lib, ... }:
+{ inputs, lib, pkgs, ... }:
 
 {
+  # Nix flake requires git
+  environment.systemPackages = [ pkgs.git ];
   nix = {
     settings = {
       experimental-features = [ "nix-command" "flakes" "repl-flake" ];

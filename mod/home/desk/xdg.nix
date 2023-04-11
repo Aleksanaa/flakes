@@ -14,7 +14,7 @@ in
   gtk.gtk3.bookmarks = let
     bookmarks = [
       "Documents"
-      "Download"
+      "Downloads"
       "Pictures"
       "Music"
       "Public"

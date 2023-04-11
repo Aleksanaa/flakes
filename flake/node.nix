@@ -12,7 +12,7 @@ let
   }: {
     ${name} = inputs.nixpkgs.lib.nixosSystem {
       inherit system;
-      inherit ((getSystem system).allModuleArgs) pkgs;
+      pkgs = (getSystem system).allModuleArgs.final;
       specialArgs = {
         inherit inputs userName;
         profiles = nixosProfiles;

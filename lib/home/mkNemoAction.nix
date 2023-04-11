@@ -11,7 +11,11 @@ let
   };
 in
 {
-  func = { action }: customToINI {
-    "Nemo Action" = action;
+  func = { fileName, action }: {
+    ".local/share/nemo/actions/${fileName}.nemo_action" = {
+      text = customToINI {
+        "Nemo Action" = action;
+      };
+    };
   };
 }

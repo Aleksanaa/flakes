@@ -7,10 +7,10 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
     impermanence.url = "github:nix-community/impermanence";
     home-manager = {
-      url = "github:pasqui23/home-manager/nixos-late-start";
+      url = "github:Aleksanaa/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprland.url = "github:hyprwm/Hyprland/v0.22.0beta";
+    hyprland.url = "github:hyprwm/Hyprland";
     nix-index-database = {
       url = "github:Mic92/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";

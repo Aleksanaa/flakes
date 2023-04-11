@@ -13,5 +13,8 @@
   };
   home.sessionVariables = { SSH_AUTH_SOCK = "/run/user/1000/keyring/ssh"; };
   # All pinentries provided are shit
-  services.gpg-agent.pinentryFlavor = null;
+  services.gpg-agent = {
+    enable = true;
+    pinentryFlavor = null;
+  };
 }

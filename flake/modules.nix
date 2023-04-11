@@ -17,6 +17,7 @@ in
         compat.keyring
         compat.greetd
         compat.gtklock
+        compat.hyprland
       ];
       osBoot = with modules.nixos.boot; [ lanza persist plymth ];
       osDesk = suites.osBase ++ suites.osInter ++ suites.osBoot;
