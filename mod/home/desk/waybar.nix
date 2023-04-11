@@ -24,6 +24,7 @@
           "wlr/workspaces"
           "cpu"
           "memory"
+          "temperature"
           "custom/caffeine"
           "custom/playing"
         ];
@@ -56,12 +57,18 @@
         
         "cpu" = {
           interval = 5;
-          format = " LOAD: {usage}%";
+          format = " {usage}%";
         };
         
         "memory" = {
           interval = 10;
-          format = " USED: {used:0.1f}G";
+          format = " {used:0.1f}G/{total:0.1f}G";
+        };
+
+        "temperature" = {
+          interval = 5;
+          hwmon-path = "/sys/class/hwmon/hwmon2/temp1_input";
+          format = " {temperatureC}°C";
         };
         
         "custom/caffeine" = {
@@ -265,6 +272,7 @@
       #clock{color:#a6e3a1}
       #cpu{color:#89dceb}
       #memory{color:#eba0ac}
+      #temperature{color:#9ab48e}
       #tray{color:#383838}
       #tray>.passive{-gtk-icon-effect:dim}
       #pulseaudio{color:#fab387}
@@ -279,7 +287,7 @@
       #custom-notification{color:#e3e4a6}
       #custom-caffeine{color:#c3e276}
       #workspaces button.active{background-color:#363840}
-      #backlight,#battery,#clock,#cpu,#memory,#mode,#mpd,#network,#pulseaudio,#tray{margin:6px 0;padding:2px 8px;border-radius:8px;background-color:#2e3440}
+      #backlight,#battery,#clock,#cpu,#memory,#mode,#mpd,#network,#pulseaudio,#temperature,#tray{margin:6px 0;padding:2px 8px;border-radius:8px;background-color:#2e3440}
     '';
   };
 }
