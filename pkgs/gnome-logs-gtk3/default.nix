@@ -1,23 +1,22 @@
-{ 
-  stdenv,
-  lib,
-  fetchurl,
-  meson,
-  ninja, 
-  pkg-config,
-  glib,
-  gtk3,
-  wrapGAppsHook,
-  gettext,
-  itstool,
-  libhandy,
-  libxml2,
-  libxslt,
-  docbook_xsl,
-  docbook_xml_dtd_43,
-  systemd,
-  python3, 
-  gsettings-desktop-schemas
+{ stdenv
+, lib
+, fetchurl
+, meson
+, ninja
+, pkg-config
+, glib
+, gtk3
+, wrapGAppsHook
+, gettext
+, itstool
+, libhandy
+, libxml2
+, libxslt
+, docbook_xsl
+, docbook_xml_dtd_43
+, systemd
+, python3
+, gsettings-desktop-schemas
 }:
 
 stdenv.mkDerivation rec {

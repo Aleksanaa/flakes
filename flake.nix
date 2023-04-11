@@ -31,7 +31,8 @@
     { self, lib, ... }:
     let
       selfLib = import ./lib { inherit inputs lib; };
-    in {
+    in
+    {
       systems = [ "x86_64-linux" "aarch64-linux" ];
       flake.lib = selfLib;
       imports = selfLib.flake.importDir ./flake;

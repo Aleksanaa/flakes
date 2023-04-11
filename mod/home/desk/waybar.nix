@@ -18,7 +18,7 @@
         margin = "0";
         ipc = true;
         fixed-center = true;
-     
+
         modules-left = [
           "custom/menu"
           "wlr/workspaces"
@@ -41,7 +41,7 @@
           "custom/powerprofiles"
         ];
 
-        "custom/menu" =  {
+        "custom/menu" = {
           format = "";
           tooltip = false;
           on-click = pkgs.writeShellScript "rofilauncher" ''
@@ -54,12 +54,12 @@
           on-click = "activate";
           "all-outputs" = false;
         };
-        
+
         "cpu" = {
           interval = 5;
           format = " {usage}%";
         };
-        
+
         "memory" = {
           interval = 10;
           format = " {used:0.1f}G/{total:0.1f}G";
@@ -70,7 +70,7 @@
           hwmon-path = "/sys/class/hwmon/hwmon2/temp1_input";
           format = " {temperatureC}°C";
         };
-        
+
         "custom/caffeine" = {
           exec = pkgs.writeShellScript "getnolock" ''
             while : ; do
@@ -87,7 +87,7 @@
           '';
           exec-on-event = true;
         };
-        
+
         "custom/playing" = {
           exec = pkgs.writeShellScript "getplaying" ''
             ${pkgs.playerctl}/bin/playerctl metadata --follow --format '{{ status }} {{ trunc(title,8) }} | {{ trunc(artist,8) }}' | ${pkgs.gnused}/bin/sed -u 's/Playing//;s/Paused//;s/ | $//'
@@ -102,7 +102,7 @@
             ${pkgs.playerctl}/bin/playerctl position 5+
           '';
         };
-        
+
         "clock" = {
           interval = 60;
           align = 0;
@@ -111,7 +111,7 @@
           format = " {:%H:%M}";
           format-alt = " {:%a %b %d, %G}";
         };
-        
+
         "custom/notification" = {
           tooltip = false;
           format = "{icon}";
@@ -137,12 +137,12 @@
           '';
           escape = true;
         };
-        
+
         "tray" = {
           icon-size = 16;
           spacing = 10;
         };
-        
+
         "backlight" = {
           interval = 2;
           align = 0;
@@ -157,7 +157,7 @@
           '';
           smooth-scrolling-threshold = 1;
         };
-        
+
         "pulseaudio" = {
           format = "{icon} {volume}%";
           format-muted = " Mute";
@@ -201,7 +201,7 @@
           '';
           smooth-scrolling-threshold = 1;
         };
-        
+
         "network" = {
           interval = 5;
           format-disconnected = "睊 Disconnected";
@@ -209,7 +209,7 @@
           format = " {bandwidthUpBits} |  {bandwidthDownBits}";
           tooltip-format = " {ifname} via {gwaddr}";
         };
-        
+
         "battery" = {
           interval = 15;
           full-at = 100;
@@ -228,7 +228,7 @@
           format-time = "{H}h {M}min";
           tooltip = true;
         };
-        
+
         "custom/powerprofiles" = {
           interval = 5;
           exec = pkgs.writeShellScript "getpowerstat" ''

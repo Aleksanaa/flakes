@@ -5,6 +5,6 @@ let
 in
 {
   flake.nixOnDroidConfigurations.default = nixOnDroidConfiguration {
-    modules = [];
+    modules = [ ];
   };
 }

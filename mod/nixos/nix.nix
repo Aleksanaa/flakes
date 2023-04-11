@@ -24,6 +24,6 @@
     # to the same of flakes. Saves time.
     registry.nixpkgs.flake = inputs.nixpkgs;
     # Not very useful anyway.
-    extraOptions = "preallocate-contents = false";    
+    extraOptions = "preallocate-contents = false";
   };
 }

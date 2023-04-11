@@ -3,7 +3,7 @@
 # Generates systemd user service for autostart purpose
 # In this way they are better managed by systemd
 {
-  func = { Desc, Service, After? [] }: {
+  func = { Desc, Service, After ? [ ] }: {
     Unit = {
       Description = Desc;
       PartOf = [ "graphical-session.target" ];

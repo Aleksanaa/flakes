@@ -1,14 +1,14 @@
-{
-  stdenv,
-  vim, 
-  fetchFromGitHub, 
-  acl,
-  gtk3,
-  libXt,
-  wrapGAppsHook,
-  glib,
-  gdk-pixbuf,
-  librsvg,
+{ stdenv
+, vim
+, fetchFromGitHub
+, acl
+, gtk3
+, libXt
+, wrapGAppsHook
+, glib
+, gdk-pixbuf
+, librsvg
+,
 }:
 
 vim.overrideAttrs (
@@ -25,10 +25,10 @@ vim.overrideAttrs (
       "--with-compiledby='wsdjeg'"
     ];
     nativeBuildInputs = oldAttrs.nativeBuildInputs ++ [ wrapGAppsHook glib gdk-pixbuf ];
-    buildInputs = oldAttrs.buildInputs ++ [ 
+    buildInputs = oldAttrs.buildInputs ++ [
       acl
       gtk3
-      libXt 
+      libXt
       glib
       librsvg
     ];

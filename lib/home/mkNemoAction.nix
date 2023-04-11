@@ -3,11 +3,12 @@
 # Generate Nemo Action from Nix expressions
 let
   customToINI = with lib; generators.toINI {
-    mkKeyValue = generators.mkKeyValueDefault {
-      mkValueString = v:
-        if isList v then (builtins.concatStringsSep ";" v) + ";"
-        else generators.mkValueStringDefault {} v;
-    } "=";
+    mkKeyValue = generators.mkKeyValueDefault
+      {
+        mkValueString = v:
+          if isList v then (builtins.concatStringsSep ";" v) + ";"
+          else generators.mkValueStringDefault { } v;
+      } "=";
   };
 in
 {

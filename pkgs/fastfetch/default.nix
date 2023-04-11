@@ -1,11 +1,10 @@
-{
-  stdenv,
-  lib,
-  fetchFromGitHub,
-  fetchpatch,
-  cmake,
-  pkg-config,
-  pciutils
+{ stdenv
+, lib
+, fetchFromGitHub
+, fetchpatch
+, cmake
+, pkg-config
+, pciutils
 }:
 
 stdenv.mkDerivation rec {
@@ -31,7 +30,7 @@ stdenv.mkDerivation rec {
   patches = [
     (fetchpatch {
       url = "https://raw.githubusercontent.com/nix-community/nur-combined" +
-        "/cd58f18ba81b0a8a79497bbab55c7a86c2639d39" + 
+        "/cd58f18ba81b0a8a79497bbab55c7a86c2639d39" +
         "/repos/vanilla/pkgs/fastfetch/no-install-config.patch";
       hash = "sha256-IKhVhgDRN5qbLNlbnheYM5aMnm/h1VeFgOqsTl/Ww0Q=";
     })

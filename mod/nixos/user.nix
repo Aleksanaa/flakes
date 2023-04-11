@@ -10,6 +10,6 @@
       };
       root.extraGroups = [ "nix-config" ];
     };
-    groups = { nix-config = {}; };
+    groups = { nix-config = { }; };
   };
 }

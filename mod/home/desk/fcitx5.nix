@@ -2,13 +2,14 @@
 
 let
   customToINI = with lib; generators.toINI {
-    mkKeyValue = generators.mkKeyValueDefault {
-      mkValueString = v:
-        if v == true then "True"
-        else if v == false then "False"
-        else if isString v then "${v}"
-        else generators.mkValueStringDefault {} v;
-    } "=";
+    mkKeyValue = generators.mkKeyValueDefault
+      {
+        mkValueString = v:
+          if v == true then "True"
+          else if v == false then "False"
+          else if isString v then "${v}"
+          else generators.mkValueStringDefault { } v;
+      } "=";
   };
   customToKV = lib.generators.toKeyValue { };
   nordLightTheme = pkgs.fetchFromGitHub {
