@@ -38,6 +38,5 @@ rustPlatform.buildRustPackage rec {
     description = "A minimalistic menu for wayland. ";
     homepage = "https://github.com/l4l/${pname}";
     license = licenses.mit;
-    platforms = [ "x86_64-linux" ];
   };
 }

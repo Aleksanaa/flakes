@@ -4,7 +4,9 @@
 , fetchpatch
 , cmake
 , pkg-config
+, makeWrapper
 , pciutils
+, imagemagick_light
 }:
 
 stdenv.mkDerivation rec {
@@ -18,9 +20,11 @@ stdenv.mkDerivation rec {
     hash = "sha256-/M4eT9BQir36NAp1+knKdwiyyFNcuOyNg/yhYEV9eSg=";
   };
 
-  nativeBuildInputs = [ cmake pkg-config ];
+  nativeBuildInputs = [ cmake pkg-config makeWrapper ];
 
-  buildInputs = [ pciutils ];
+  runtimeDependencies = [ pciutils imagemagick_light ];
+
+  buildInputs = runtimeDependencies;
 
   NIX_CFLAGS_COMPILE = [
     "-Wno-macro-redefined"
@@ -38,12 +42,17 @@ stdenv.mkDerivation rec {
 
   cmakeFlags = [ "--no-warn-unused-cli" ];
 
+  LD_LIBRARY_PATH = lib.makeLibraryPath runtimeDependencies;
+
+  postInstall = ''
+    wrapProgram $out/bin/fastfetch --prefix LD_LIBRARY_PATH : "${LD_LIBRARY_PATH}"
+    wrapProgram $out/bin/flashfetch --prefix LD_LIBRARY_PATH : "${LD_LIBRARY_PATH}"
+  '';
+
   meta = with lib; {
     description = "Like neofetch, but much faster because written in C. ";
     homepage = "https://github.com/LinusDierheimer/${pname}";
     license = licenses.mit;
-    platforms = [ "x86_64-linux" ];
   };
 }
-
 
