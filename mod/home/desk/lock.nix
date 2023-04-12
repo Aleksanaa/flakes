@@ -26,7 +26,7 @@ in
   services.screen-locker = {
     enable = true;
     inactiveInterval = 5;
-    lockCmd = "${pkgs.gtklock}/bin/gtklock";
+    lockCmd = "${pkgs.systemd}/bin/systemctl suspend";
     xautolock = {
       enable = true;
       package = fakeXautolock;
