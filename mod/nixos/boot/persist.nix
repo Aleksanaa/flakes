@@ -5,6 +5,7 @@
   imports = [ inputs.impermanence.nixosModules.impermanence ];
   environment.persistence."/nix/persist" = {
     directories = [
+      "/etc/ssh"
       "/etc/nixos"
       "/etc/NetworkManager/system-connections"
       "/var/lib"

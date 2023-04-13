@@ -9,7 +9,7 @@ in
   flake = rec {
     nixosProfiles = rakeLeaves ../mod;
     nixosSuites = buildSuites nixosProfiles (modules: suites: {
-      osBase = with modules.nixos; [ doas doc nix time user ];
+      osBase = with modules.nixos; [ doas doc nix time user hostkey ];
       osInter = with modules.nixos; [
         pipewire
         hm
