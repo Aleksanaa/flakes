@@ -19,14 +19,14 @@ let
         ;;
       esac
     done
-    ${pkgs.swayidle}/bin/swayidle -w timeout "$TIMEOUT" "$LOCKER"
+    ${pkgs.swayidle}/bin/swayidle -w timeout "$TIMEOUT" "${pkgs.systemd}/bin/systemctl suspend"
   '';
 in
 {
   services.screen-locker = {
     enable = true;
     inactiveInterval = 5;
-    lockCmd = "${pkgs.systemd}/bin/systemctl suspend";
+    lockCmd = "${pkgs.gtklock}/bin/gtklock";
     xautolock = {
       enable = true;
       package = fakeXautolock;
