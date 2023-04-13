@@ -1,17 +1,18 @@
-{ config, inputs, pkgs, ... }:
+{ config, inputs, pkgs, selfLib, ... }:
 
 let
+  inherit (selfLib.nixos.agenix) identityFiles secretFiles;
   hostName = config.networking.hostName;
 in
 {
-  imports = with inputs; [
+  imports = with inputs;[
     agenix.nixosModules.default
     agenix-rekey.nixosModules.default
   ];
   rekey = {
-    masterIdentities = [ ./identities/yubikey-1e94e772.pub ];
     agePlugins = [ pkgs.age-plugin-yubikey ];
-    secrets.devHashedPassword.file = ./secrets/devHashedPassword.age;
+    masterIdentities = identityFiles ./identities;
+    secrets = secretFiles ./secrets;
     hostPubkey = ./pubkeys/${hostName}.pub;
   };
 }

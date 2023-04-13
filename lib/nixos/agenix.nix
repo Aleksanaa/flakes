@@ -10,7 +10,7 @@
     (file': type:
       {
         name = lib.removeSuffix ".age" file';
-        value = { file = dir + "/" + file'; };
+        value = { file = dir + "/${file'}"; };
       })
     (lib.filterAttrs
       (file: type: type == "regular" && lib.hasSuffix ".age" file)
