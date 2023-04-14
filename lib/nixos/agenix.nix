@@ -2,7 +2,7 @@
 
 {
   identityFiles = dir: builtins.map
-    (path: dir + path)
+    (path: dir + "/${path}")
     (lib.attrNames
       (builtins.readDir dir));
 
